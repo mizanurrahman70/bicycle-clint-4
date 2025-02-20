@@ -3,7 +3,48 @@ import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { useRegisterMutation } from "../../redux/features/auth/authApi";
 import { setUser } from "../../redux/features/auth/authSlice";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
+
+// Background Animation Component
+const BackgroundAnimation = () => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      const { clientX, clientY } = event;
+      const { width, height, left, top } = ref.current.getBoundingClientRect();
+      mouseX.set((clientX - left) / width - 0.5);
+      mouseY.set((clientY - top) / height - 0.5);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  const backgroundX = useTransform(mouseX, [-0.5, 0.5], [-50, 50]);
+  const backgroundY = useTransform(mouseY, [-0.5, 0.5], [-50, 50]);
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background:
+          "linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(59, 130, 246, 0.1)",
+        zIndex: -1,
+        x: backgroundX,
+        y: backgroundY,
+      }}
+    />
+  );
+};
 
 const Register = () => {
   const dispatch = useAppDispatch();
@@ -52,8 +93,11 @@ const Register = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gradient-to-r from-blue-50 to-indigo-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8"
+      className="min-h-screen bg-gradient-to-r from-blue-50 to-indigo-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden"
     >
+      {/* Background Animation */}
+      <BackgroundAnimation />
+
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -70,13 +114,7 @@ const Register = () => {
           variants={itemVariants}
           className="mt-2 text-center text-sm text-gray-600"
         >
-          Or{" "}
-          <Link
-            to="/login"
-            className="font-medium text-indigo-600 hover:text-indigo-500"
-          >
-            sign in to your account
-          </Link>
+
         </motion.p>
       </motion.div>
 
@@ -166,6 +204,13 @@ const Register = () => {
                 )}
               </div>
             </motion.div>
+            Or{" "}
+                <Link
+                  to="/login"
+                  className="font-medium text-indigo-600 hover:text-indigo-500 "
+                >
+                  sign in to your account
+                </Link>
 
             <motion.div variants={itemVariants}>
               <motion.button
@@ -174,7 +219,7 @@ const Register = () => {
                 whileHover="hover"
                 whileTap="tap"
                 disabled={isLoading}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full flex mt-5 justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 {isLoading ? (
                   <motion.div
