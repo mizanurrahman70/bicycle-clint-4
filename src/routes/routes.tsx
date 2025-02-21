@@ -6,41 +6,53 @@ import Register from "../pages/Register/Register";
 import AllProducts from "../pages/AllProducts/AllProducts";
 import About from "../pages/About/About";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
+import Dashboard from "../components/Layouts/Desboard/Dashboard";
+import AddProduct from "../components/Layouts/Desboard/components/AddProduct";
+
 
 
 const router = createBrowserRouter([
     {
-        path : '/',
-        element : <MainLayout/>,
-        children : [
+        path: '/',
+        element: <MainLayout />,
+        children: [
             {
-               path : '/',
-               element : <Home/> 
+                path: '/',
+                element: <Home />
             },
             {
-                path : '/products',
-                element :<AllProducts/>
+                path: '/products',
+                element: <AllProducts />
             },
             {
-                path : '/about_us',
-                element :<About/>
+                path: '/about_us',
+                element: <About />
             },
             {
-                path : '/products/:id',
-                element: <ProductDetails/>
+                path: '/products/:id',
+                element: <ProductDetails />
             }
-            
         ]
     },
-    //auth routes
+    // Auth routes
     {
-        path : '/login',
-        element : <Login/> 
-     },
+        path: '/login',
+        element: <Login />
+    },
     {
-        path : '/register',
-        element : <Register/> 
-     }
+        path: '/register',
+        element: <Register />
+    },
+    // Dashboard route
+    {
+        path: '/dashboard',
+        element: <Dashboard />,
+        children: [
+            {
+                path: '/dashboard/add_product',
+                element: <AddProduct />
+            },
+        ] // Keep this if you plan to add nested routes inside Dashboard
+    }
 ]);
-
 export default router;

@@ -22,6 +22,7 @@ const Login = () => {
       });
 
       const [login] = useLoginMutation();
+  
 
 
     const onSubmit = async (data:any) => {
@@ -31,7 +32,7 @@ const Login = () => {
         };
 
        const res = await login(userInfo).unwrap();
-       const user = verifyToken(res.data.token);
+       const user = verifyToken(res?.token);
        dispatch(setUser({
         user : user,
         token : res.data.token
