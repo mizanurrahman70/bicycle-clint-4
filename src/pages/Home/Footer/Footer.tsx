@@ -37,7 +37,7 @@ const Footer = () => {
             <li>123 Bike Street</li>
             <li>Cycle City, CC 12345</li>
             <li>Phone: (555) 123-4567</li>
-            <li>Email: info@bikeshop.com</li>
+            <li>Email: info@bicycles.com</li>
           </ul>
         </div>
         <div>
@@ -66,7 +66,7 @@ const Footer = () => {
       </div>
       <div className="mt-8 border-t border-gray-800 pt-8">
         <p className="text-gray-400 text-center">
-          © {new Date().getFullYear()} BikeShop. All rights reserved.
+          © {new Date().getFullYear()} . All rights reserved.
         </p>
       </div>
     </div>

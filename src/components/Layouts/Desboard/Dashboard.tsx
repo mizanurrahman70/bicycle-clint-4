@@ -1,9 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
+import { useCurrentUser } from "../../../redux/features/auth/authSlice";
+
 
 
 const Dashboard = () => {
-const isAdmin ="admin"
+
+const user = useSelector(useCurrentUser)
+const isAdmin =user?.role 
 
   return (
     <div className="flex container mx-auto">
@@ -14,20 +19,8 @@ const isAdmin ="admin"
         </div>
         <ul className="menu space-y-2 ml-3 mt-3">
          
-          {isAdmin  ? (
+          {isAdmin === 'admin' && (
             <>
-              <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/my_profile">My Profile</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/add_product">Add Product</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/my_products">My Products</NavLink>
-              </li>{" "}
               <li>
                 <NavLink to="/dashboard/add_product">Add Product</NavLink>
               </li>
@@ -42,18 +35,18 @@ const isAdmin ="admin"
                 </NavLink>
               </li>
             </>
-          ) : (
+          ) }
+          {isAdmin === 'admin' || isAdmin === "user" && (
             <>
-              {" "}
-              <li>
+               <li>
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="">My Profile</NavLink>
+                <NavLink to="/dashboard/my_profile">My Profile</NavLink>
               </li>
               <li>
-                <NavLink to="t">My Products</NavLink>
-              </li>
+                <NavLink to="/dashboard/my_products">My Products</NavLink>
+              </li>{" "}
             </>
           )}
         

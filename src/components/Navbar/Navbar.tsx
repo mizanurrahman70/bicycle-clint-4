@@ -30,7 +30,7 @@ const Navbar = () => {
                 src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
                 alt="Logo"
               />
-              <span className="ml-2 text-xl font-bold text-gray-800">BikeShop</span>
+              <span className="ml-2 text-xl font-bold text-gray-800">Bi Cycle</span>
             </Link>
 
             {/* Desktop Navigation */}

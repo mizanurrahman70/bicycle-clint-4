@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 const AllProducts = () => {
   const { data: products, error, isLoading } = useGetAllProductsQuery();
   const items = products?.data;
+  console.log(items);
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
     priceRange: 'all',
