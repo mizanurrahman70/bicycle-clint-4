@@ -8,6 +8,10 @@ import About from "../pages/About/About";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import Dashboard from "../components/Layouts/Desboard/Dashboard";
 import AddProduct from "../components/Layouts/Desboard/components/AddProduct";
+import MyProfile from "../components/Layouts/Desboard/components/MyProfile";
+import MyProducts from "../components/Layouts/Desboard/components/MyProducts";
+import ManageOrders from "../components/Layouts/Desboard/components/ManageOrders";
+import ManageUsers from "../components/Layouts/Desboard/components/ManageUsers";
 
 
 
@@ -51,6 +55,22 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/add_product',
                 element: <AddProduct />
+            },
+            {
+                path: '/dashboard/my_profile',
+                element: <MyProfile />
+            },
+            {
+                path: '/dashboard/my_products',
+                element: <MyProducts />
+            },
+            {
+                path: '/dashboard/manage_orders',
+                element: <ManageOrders />
+            },
+            {
+                path: '/dashboard/manage_users',
+                element: <ManageUsers />
             },
         ] // Keep this if you plan to add nested routes inside Dashboard
     }

@@ -20,21 +20,24 @@ const isAdmin ="admin"
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="">My Profile</NavLink>
+                <NavLink to="/dashboard/my_profile">My Profile</NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/add_product">Add Product</NavLink>
               </li>
               <li>
-                <NavLink to="">My Products</NavLink>
+                <NavLink to="/dashboard/my_products">My Products</NavLink>
               </li>{" "}
               <li>
-                <NavLink to="">
+                <NavLink to="/dashboard/add_product">Add Product</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manage_users">
                 Manage users
                 </NavLink>
               </li>
               <li>
-                <NavLink to="">
+                <NavLink to="/dashboard/manage_orders">
                 Manage Orders
                 </NavLink>
               </li>
@@ -47,9 +50,6 @@ const isAdmin ="admin"
               </li>
               <li>
                 <NavLink to="">My Profile</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/add_product">Add Product</NavLink>
               </li>
               <li>
                 <NavLink to="t">My Products</NavLink>
