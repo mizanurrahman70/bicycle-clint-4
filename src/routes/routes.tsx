@@ -12,6 +12,7 @@ import MyProfile from "../components/Layouts/Desboard/components/MyProfile";
 import MyProducts from "../components/Layouts/Desboard/components/MyProducts";
 import ManageOrders from "../components/Layouts/Desboard/components/ManageOrders";
 import ManageUsers from "../components/Layouts/Desboard/components/ManageUsers";
+import Products from "../components/Layouts/Desboard/components/Products";
 
 
 
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/manage_users',
                 element: <ManageUsers />
+            },
+            {
+                path: '/dashboard/manage_product',
+                element: <Products />
             },
         ] // Keep this if you plan to add nested routes inside Dashboard
     }
