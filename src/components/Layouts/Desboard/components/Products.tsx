@@ -16,7 +16,7 @@ interface BiCycle {
 }
 
 const Products = () => {
-    const { data: products, error, isLoading } = useGetAllProductsQuery();
+    const { data: products, error, isLoading,refetch } = useGetAllProductsQuery();
     const [updateProduct] = useUpdateProductMutation();
     const [editId, setEditId] = useState<string | null>(null);
     const [editData, setEditData] = useState<Partial<BiCycle>>({});
@@ -27,6 +27,7 @@ const Products = () => {
         try {
             await deleteProduct(id).unwrap();
             toast.success("Product deleted successfully", { position: 'top-center' });
+            refetch()
         } catch (error) {
             console.error("Failed to delete the product:", error);
             toast.error("Failed to delete product.", { position: 'top-center' });
@@ -55,6 +56,7 @@ const Products = () => {
        
             await updateProduct({ productId: editId, updatedData: editData }).unwrap();
             toast.success("Product updated successfully", { position: 'top-center' });
+            refetch()
         } catch (err) {
             console.error("Error updating product:", err);
             toast.error("Failed to update product.", { position: 'top-center' });
