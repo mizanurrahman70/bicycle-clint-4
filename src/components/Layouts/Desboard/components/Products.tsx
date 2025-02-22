@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Bike, Edit, Trash2, Save, X } from 'lucide-react';
+import { cycle, Edit, Trash2, Save, X } from 'lucide-react';
+import { useGetAllProductsQuery } from '../../../../redux/features/products/productApi';
 
 interface Bicycle {
     id: string;
@@ -12,14 +13,9 @@ interface Bicycle {
     inStock: boolean;
 }
 
-const SAMPLE_PRODUCTS: Bicycle[] = [
-    { id: "BIKE-001", name: "Trailblazer X", brand: "Giant", price: 799.99, type: "Mountain", description: "Rugged mountain bike.", quantity: 10, inStock: true },
-    { id: "BIKE-002", name: "Speedster 200", brand: "Trek", price: 999.99, type: "Road", description: "Lightweight road bike.", quantity: 5, inStock: true },
-    { id: "BIKE-003", name: "Urban Glide", brand: "Cannondale", price: 599.99, type: "Hybrid", description: "Perfect for city rides.", quantity: 8, inStock: true },
-];
-
 const Products = () => {
-    const [products, setProducts] = useState<Bicycle[]>(SAMPLE_PRODUCTS);
+    const { data: products, error, isLoading } = useGetAllProductsQuery();
+    console.log(products);
     const [editId, setEditId] = useState<string | null>(null);
     const [editData, setEditData] = useState<Partial<Bicycle>>({});
 
@@ -33,12 +29,11 @@ const Products = () => {
     };
 
     const handleSave = () => {
-        setProducts((prev) => {
-            const updatedProducts = prev.map(bike => (bike.id === editId ? { ...bike, ...editData } : bike));
-            console.log("Updated Products:", updatedProducts); // Log updated data
-            return updatedProducts;
-        });
-        setEditId(null);
+        if (editId) {
+            // Handle updating the product list here if you need to persist the changes
+            console.log("Updated Product:", editData);
+            setEditId(null);
+        }
     };
 
     const handleCancel = () => {
@@ -46,10 +41,13 @@ const Products = () => {
         setEditData({});
     };
 
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error loading products</p>;
+
     return (
         <div className="max-w-7xl mx-auto px-4 py-8">
             <h1 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
-                <Bike className="w-6 h-6" />
+                <cycle className="w-6 h-6" />
                 Manage Products
             </h1>
 
@@ -69,11 +67,11 @@ const Products = () => {
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                        {products.map(bike => (
-                            <tr key={bike.id} className="hover:bg-gray-50 transition-colors">
-                                <td className="px-4 py-3 text-sm text-gray-900">{bike.id}</td>
+                        {products?.data.map((cycle,index) => (
+                            <tr key={cycle.id} className="hover:bg-gray-50 transition-colors">
+                                <td className="px-4 py-3 text-sm text-gray-900">{index +1}</td>
 
-                                {editId === bike.id ? (
+                                {editId === cycle.id ? (
                                     <>
                                         <td className="px-4 py-3">
                                             <input type="text" value={editData.name as string} onChange={(e) => handleInputChange("name", e.target.value)}
@@ -111,17 +109,17 @@ const Products = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <td className="px-4 py-3 text-sm">{bike.name}</td>
-                                        <td className="px-4 py-3 text-sm">{bike.brand}</td>
-                                        <td className="px-4 py-3 text-sm">{bike.type}</td>
-                                        <td className="px-4 py-3 text-sm">${bike.price.toFixed(2)}</td>
-                                        <td className="px-4 py-3 text-sm">{bike.quantity}</td>
-                                        <td className="px-4 py-3 text-sm">{bike.inStock ? "✔️ Yes" : "❌ No"}</td>
+                                        <td className="px-4 py-3 text-sm">{cycle.name}</td>
+                                        <td className="px-4 py-3 text-sm">{cycle.brand}</td>
+                                        <td className="px-4 py-3 text-sm">{cycle.type}</td>
+                                        <td className="px-4 py-3 text-sm">${cycle.price.toFixed(2)}</td>
+                                        <td className="px-4 py-3 text-sm">{cycle.quantity}</td>
+                                        <td className="px-4 py-3 text-sm">{cycle.inStock ? "✔️ Yes" : "❌ No"}</td>
                                     </>
                                 )}
 
                                 <td className="px-4 py-3 text-right">
-                                    {editId === bike.id ? (
+                                    {editId === cycle.id ? (
                                         <div className="flex gap-2">
                                             <button onClick={handleSave} className="text-green-600 hover:text-green-900">
                                                 <Save className="w-5 h-5" />
@@ -132,7 +130,7 @@ const Products = () => {
                                         </div>
                                     ) : (
                                         <div className="flex gap-2">
-                                            <button onClick={() => handleEditClick(bike)} className="text-blue-600 hover:text-blue-900">
+                                            <button onClick={() => handleEditClick(cycle)} className="text-blue-600 hover:text-blue-900">
                                                 <Edit className="w-5 h-5" />
                                             </button>
                                             <button className="text-red-600 hover:text-red-900">
