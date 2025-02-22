@@ -29,9 +29,9 @@ const AllProducts = () => {
 
     return items.filter(product => {
       const searchMatch = 
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchTerm.toLowerCase());
+    (product.name?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+    (product.brand?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+    (product.category?.toLowerCase() || "").includes(searchTerm.toLowerCase());
 
       let priceMatch = true;
       if (filters.priceRange !== 'all') {

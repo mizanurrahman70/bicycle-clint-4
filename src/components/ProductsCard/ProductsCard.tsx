@@ -10,7 +10,7 @@ interface Product {
   description: string;
   quantity: number;
   inStock: boolean;
-  image: string;
+  img: string;
 }
 
 interface ProductCardProps {
@@ -22,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       <div className="aspect-w-3 aspect-h-2">
         <img
-          src={product.image || "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}
+          src={"https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}
           alt={product.name}
           className="w-full h-48 object-cover"
         />
