@@ -3,13 +3,13 @@ import { Users } from "lucide-react";
 import { useGetAllUserQuery, useUpdateUserMutation } from "../../../../redux/features/user/user";
 
 interface User {
-    id: string;
+    _id: string;
     name: string;
     email: string;
-    status: "active" | "inactive";
+    userStatus: "active" | "inactive";
     role: "user" | "admin";
-    joinDate: string;
-    lastUpdate: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 const statusColors = {
@@ -97,7 +97,7 @@ const ManageUsers = () => {
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {users.data.map((user: User) => (
-                                    <tr key={user.id} className="hover:bg-gray-50 transition-colors">
+                                    <tr  className="hover:bg-gray-50 transition-colors">
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="text-sm font-medium text-gray-900">{user.name}</div>
                                             <div className="text-sm text-gray-500">{user.email}</div>
