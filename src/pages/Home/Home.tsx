@@ -1,14 +1,15 @@
 import Banner from "./Banner/Banner";
 import FeaturedProducts from "./FeaturedProducts/FeaturedProducts";
 import Footer from "./Footer/Footer";
-import Testimonial from "./Testimonial/Testimonial";
+import Testimonilal from "./Testimonial/Testimonilal";
+
 
 const Home = () => {
     return (
         <div>
             <Banner/>
             <FeaturedProducts/>
-            <Testimonial/>
+            <Testimonilal/>
             <Footer/>
         </div>
     );
