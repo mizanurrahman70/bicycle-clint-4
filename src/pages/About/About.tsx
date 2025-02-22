@@ -1,11 +1,11 @@
 import React from 'react';
-import { Bike, Users, Trophy, Wrench, Truck, HeartHandshake } from 'lucide-react';
+import { Cycle, Users, Trophy, Wrench, Truck, HeartHandshake } from 'lucide-react';
 
 const stats = [
   {
-    icon: <Bike size={24} />,
+    icon: <Cycle size={24} />,
     value: "10,000+",
-    label: "Bikes Sold"
+    label: "Cycles Sold"
   },
   {
     icon: <Users size={24} />,
@@ -21,9 +21,9 @@ const stats = [
 
 const features = [
   {
-    icon: <Bike className="text-indigo-600" size={24} />,
+    icon: <Cycle className="text-indigo-600" size={24} />,
     title: "Premium Selection",
-    description: "Curated collection of top-quality bikes from renowned brands worldwide"
+    description: "Curated collection of top-quality Cycles from renowned brands worldwide"
   },
   {
     icon: <Wrench className="text-indigo-600" size={24} />,
@@ -59,7 +59,7 @@ const About = () => {
           <div className="text-center text-white px-4">
             <h1 className="text-5xl font-bold mb-4">Our Story</h1>
             <p className="text-xl max-w-2xl mx-auto">
-              Passionate about cycling since 1995, delivering quality bikes and exceptional service to riders worldwide
+              Passionate about cycling since 1995, delivering quality Cycles and exceptional service to riders worldwide
             </p>
           </div>
         </div>
@@ -70,7 +70,7 @@ const About = () => {
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            We're dedicated to making cycling accessible to everyone by providing high-quality bikes, expert guidance, and outstanding service. Our passion for cycling drives us to help every rider find their perfect match and enjoy the freedom of two wheels.
+            We're dedicated to making cycling accessible to everyone by providing high-quality Cycles, expert guidance, and outstanding service. Our passion for cycling drives us to help every rider find their perfect match and enjoy the freedom of two wheels.
           </p>
         </div>
       </div>

@@ -11,7 +11,7 @@ const featuredProducts = [
     reviews: 128,
     image: "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?q=80&w=3540&auto=format&fit=crop",
     tag: "Best Seller",
-    description: "Professional-grade mountain bike with advanced suspension"
+    description: "Professional-grade mountain Cycle with advanced suspension"
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const featuredProducts = [
     reviews: 95,
     image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=3540&auto=format&fit=crop",
     tag: "New Arrival",
-    description: "Ultra-lightweight carbon frame road bike"
+    description: "Ultra-lightweight carbon frame road Cycle"
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const featuredProducts = [
     reviews: 156,
     image: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=3540&auto=format&fit=crop",
     tag: "Popular",
-    description: "Comfortable hybrid bike perfect for city commuting"
+    description: "Comfortable hybrid Cycle perfect for city commuting"
   },
   {
     id: 4,
@@ -44,7 +44,7 @@ const featuredProducts = [
     reviews: 82,
     image: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=3540&auto=format&fit=crop",
     tag: "Featured",
-    description: "Premium electric bike with extended range"
+    description: "Premium electric Cycle with extended range"
   }
 ];
 

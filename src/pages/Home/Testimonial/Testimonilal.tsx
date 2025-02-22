@@ -5,7 +5,7 @@ const reviews = [
     id: 1,
     brand: "TrailBlazer",
     model: "Mountain Explorer",
-    review: "Best mountain bike I've ever owned! Perfect for rough terrain.",
+    review: "Best mountain Cycle I've ever owned! Perfect for rough terrain.",
     rating: "⭐⭐⭐⭐⭐"
   },
   {

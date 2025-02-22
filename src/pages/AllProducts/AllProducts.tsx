@@ -87,7 +87,7 @@ const AllProducts = () => {
               Our Products
             </h1>
             <p className="mt-6 text-xl text-indigo-100 max-w-3xl mx-auto">
-              Explore our collection of premium bikes for every adventure
+              Explore our collection of premium Cycles for every adventure
             </p>
           </div>
         </div>

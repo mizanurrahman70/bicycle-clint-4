@@ -8,7 +8,7 @@ const Footer = () => {
         <div>
           <h3 className="text-white text-lg font-semibold mb-4">About Us</h3>
           <p className="text-gray-400">
-            Premium bike shop offering the best selection of bikes and accessories for every rider.
+            Premium Cycle shop offering the best selection of Cycles and accessories for every rider.
           </p>
         </div>
         <div>
@@ -34,7 +34,7 @@ const Footer = () => {
         <div>
           <h3 className="text-white text-lg font-semibold mb-4">Contact</h3>
           <ul className="space-y-2 text-gray-400">
-            <li>123 Bike Street</li>
+            <li>123 Cycle Street</li>
             <li>Cycle City, CC 12345</li>
             <li>Phone: (555) 123-4567</li>
             <li>Email: info@bicycles.com</li>
