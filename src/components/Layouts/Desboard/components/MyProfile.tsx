@@ -1,12 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { KeyRound, Save, User } from 'lucide-react';
+import { useGetAllUserQuery, useUpdateUserMutation } from '../../../../redux/features/user/user'; // Import your update mutation
+import { useCurrentUser } from '../../../../redux/features/auth/authSlice';
+import { useSelector } from 'react-redux';
 
+interface Users {
+    _id: string;
+    name: string;
+    email: string;
+    userStatus: "active" | "inactive";
+    role: "user" | "admin";
+    createdAt: string;
+    updatedAt: string;
+}
 const MyProfile = () => {
+    const user = useSelector(useCurrentUser); // Get the current user from the redux store
+    const { data: users = [], isLoading, refetch } = useGetAllUserQuery(); // Fetch all users
+    const [updateUser] = useUpdateUserMutation();
+// console.log('all user',users.data);
+// console.log('user',user);
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [userId, setUserId] = useState<string | null>(null); // State to hold the matched user's _id
+ 
+    useEffect(() => {
+        // Check if the current user's email matches any email in the users list
+      
+            const matchedUser = users?.data?.find(u => u?.email === user?.email);
+            console.log(matchedUser);
+            if (matchedUser) {
+                setUserId(matchedUser._id); // Set the user's _id if a match is found
+            }
+        
+    }, [users, user?.email]); // Only re-run the effect when the users list or user's email changes
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -29,15 +58,30 @@ const MyProfile = () => {
             return;
         }
 
+        if (!userId) {
+            setError('User not found or email mismatch');
+            return;
+        }
+
         try {
-            // Here you would typically make an API call to update the password
-            // For demo purposes, we'll just show a success message
-            setSuccess('Password updated successfully');
-            setCurrentPassword('');
-            setNewPassword('');
-            setConfirmPassword('');
+            // Call the updateUser mutation to update the password
+            const response = await updateUser({
+                UserId: userId,
+                updatedUser: confirmPassword,
+            });
+
+            // Handle success response
+            if (response?.data) {
+                setSuccess('Password updated successfully');
+                setCurrentPassword('');
+                setNewPassword('');
+                setConfirmPassword('');
+            } else {
+                setError('Failed to update password. Please try again.');
+            }
         } catch (err) {
-            setError('Failed to update password. Please try again.');
+            setError('An error occurred. Please try again later.');
+            console.error(err); // Log the error for debugging
         }
     };
 
