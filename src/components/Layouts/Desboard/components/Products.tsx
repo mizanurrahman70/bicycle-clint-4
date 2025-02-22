@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Bike, Edit, Trash2, Save, X } from 'lucide-react';
-import { useGetAllProductsQuery } from '../../../../redux/features/products/productApi';
+import { useDeleteProductMutation, useGetAllProductsQuery, useUpdateProductMutation } from '../../../../redux/features/products/productApi';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 interface BiCycle {
-    id: string;
+    _id: string;
     name: string;
     brand: string;
     price: number;
@@ -15,35 +17,61 @@ interface BiCycle {
 
 const Products = () => {
     const { data: products, error, isLoading } = useGetAllProductsQuery();
-    console.log(products);
+    const [updateProduct] = useUpdateProductMutation();
     const [editId, setEditId] = useState<string | null>(null);
     const [editData, setEditData] = useState<Partial<BiCycle>>({});
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [deleteProduct] = useDeleteProductMutation();
+
+    const deleteProductHandle = async (id: string) => {
+        try {
+            await deleteProduct(id).unwrap();
+            toast.success("Product deleted successfully", { position: 'top-center' });
+        } catch (error) {
+            console.error("Failed to delete the product:", error);
+            toast.error("Failed to delete product.", { position: 'top-center' });
+        }
+    };
 
     const handleEditClick = (biCycle: BiCycle) => {
-        setEditId(biCycle.id);
+
+        setEditId(biCycle._id);
         setEditData({ ...biCycle });
+        setIsModalOpen(true);
     };
 
     const handleInputChange = (field: keyof BiCycle, value: string | number | boolean) => {
         setEditData((prev) => ({ ...prev, [field]: value }));
     };
 
-    const handleSave = () => {
-        if (editId) {
-            // Handle updating the product list here if you need to persist the changes
-            console.log("Updated Product:", editData);
-            setEditId(null);
+    const handleSave = async () => {
+        if (!editId) {
+            console.error("Error: editId is undefined.");
+            toast.error("Error: Product ID is missing.", { position: 'top-center' });
+            return;
         }
+
+        try {
+       
+            await updateProduct({ productId: editId, updatedData: editData }).unwrap();
+            toast.success("Product updated successfully", { position: 'top-center' });
+        } catch (err) {
+            console.error("Error updating product:", err);
+            toast.error("Failed to update product.", { position: 'top-center' });
+        }
+        setIsModalOpen(false);
+        setEditId(null);
+        setEditData({});
     };
 
     const handleCancel = () => {
+        setIsModalOpen(false);
         setEditId(null);
         setEditData({});
     };
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error loading products</p>;
-
     return (
         <div className="max-w-7xl mx-auto px-4 py-8">
             <h1 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
@@ -67,46 +95,89 @@ const Products = () => {
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                        {products?.data.map((Cycle,index) => (
+                        {products?.data.map((Cycle, index) => (
                             <tr key={Cycle.id} className="hover:bg-gray-50 transition-colors">
-                                <td className="px-4 py-3 text-sm text-gray-900">{index +1}</td>
+                                <td className="px-4 py-3 text-sm text-gray-900">{index + 1}</td>
 
-                                {editId === Cycle.id ? (
-                                    <>
-                                        <td className="px-4 py-3">
-                                            <input type="text" value={editData.name as string} onChange={(e) => handleInputChange("name", e.target.value)}
-                                                className="border p-1 rounded w-full" />
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <input type="text" value={editData.brand as string} onChange={(e) => handleInputChange("brand", e.target.value)}
-                                                className="border p-1 rounded w-full" />
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <select value={editData.type as string} onChange={(e) => handleInputChange("type", e.target.value)}
-                                                className="border p-1 rounded w-full">
-                                                <option value="Mountain">Mountain</option>
-                                                <option value="Road">Road</option>
-                                                <option value="Hybrid">Hybrid</option>
-                                                <option value="BMX">BMX</option>
-                                                <option value="Electric">Electric</option>
-                                            </select>
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <input type="number" value={editData.price as number} onChange={(e) => handleInputChange("price", parseFloat(e.target.value))}
-                                                className="border p-1 rounded w-full" />
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <input type="number" value={editData.quantity as number} onChange={(e) => handleInputChange("quantity", parseInt(e.target.value))}
-                                                className="border p-1 rounded w-full" />
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <select value={editData.inStock ? "true" : "false"} onChange={(e) => handleInputChange("inStock", e.target.value === "true")}
-                                                className="border p-1 rounded w-full">
-                                                <option value="true">Yes</option>
-                                                <option value="false">No</option>
-                                            </select>
-                                        </td>
-                                    </>
+                                {editId === Cycle._id ? (
+                                    <td colSpan={8} className="px-4 py-3">
+                                        {/* Modal for editing product */}
+                                        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
+                                            <div className="bg-white rounded-lg p-8 shadow-md w-96">
+                                                <h2 className="text-xl font-semibold mb-4">Edit Product</h2>
+                                                <div className="mb-4">
+                                                    <label className="block text-sm font-medium text-gray-700">Name</label>
+                                                    <input
+                                                        type="text"
+                                                        value={editData.name as string}
+                                                        onChange={(e) => handleInputChange("name", e.target.value)}
+                                                        className="border p-1 rounded w-full"
+                                                    />
+                                                </div>
+                                                <div className="mb-4">
+                                                    <label className="block text-sm font-medium text-gray-700">Brand</label>
+                                                    <input
+                                                        type="text"
+                                                        value={editData.brand as string}
+                                                        onChange={(e) => handleInputChange("brand", e.target.value)}
+                                                        className="border p-1 rounded w-full"
+                                                    />
+                                                </div>
+                                                <div className="mb-4">
+                                                    <label className="block text-sm font-medium text-gray-700">Type</label>
+                                                    <select
+                                                        value={editData.type as string}
+                                                        onChange={(e) => handleInputChange("type", e.target.value)}
+                                                        className="border p-1 rounded w-full"
+                                                    >
+                                                        <option value="Mountain">Mountain</option>
+                                                        <option value="Road">Road</option>
+                                                        <option value="Hybrid">Hybrid</option>
+                                                        <option value="BMX">BMX</option>
+                                                        <option value="Electric">Electric</option>
+                                                    </select>
+                                                </div>
+                                                <div className="mb-4">
+                                                    <label className="block text-sm font-medium text-gray-700">Price ($)</label>
+                                                    <input
+                                                        type="number"
+                                                        value={editData.price as number}
+                                                        onChange={(e) => handleInputChange("price", parseFloat(e.target.value))}
+                                                        className="border p-1 rounded w-full"
+                                                    />
+                                                </div>
+                                                <div className="mb-4">
+                                                    <label className="block text-sm font-medium text-gray-700">Quantity</label>
+                                                    <input
+                                                        type="number"
+                                                        value={editData.quantity as number}
+                                                        onChange={(e) => handleInputChange("quantity", parseInt(e.target.value))}
+                                                        className="border p-1 rounded w-full"
+                                                    />
+                                                </div>
+                                                <div className="mb-4">
+                                                    <label className="block text-sm font-medium text-gray-700">In Stock</label>
+                                                    <select
+                                                        value={editData.inStock ? "true" : "false"}
+                                                        onChange={(e) => handleInputChange("inStock", e.target.value === "true")}
+                                                        className="border p-1 rounded w-full"
+                                                    >
+                                                        <option value="true">Yes</option>
+                                                        <option value="false">No</option>
+                                                    </select>
+                                                </div>
+                                                <div className="flex justify-end gap-4">
+                                                    <button onClick={handleCancel} className="px-6 py-2 bg-gray-200 rounded-md text-gray-700">
+                                                        Cancel
+                                                    </button>
+                                                    <button onClick={handleSave} className="px-6 py-2 bg-blue-600 rounded-md text-white">
+                                                        <Save className="w-5 h-5 mr-2" />
+                                                        Save Changes
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 ) : (
                                     <>
                                         <td className="px-4 py-3 text-sm">{Cycle.name}</td>
@@ -133,7 +204,8 @@ const Products = () => {
                                             <button onClick={() => handleEditClick(Cycle)} className="text-blue-600 hover:text-blue-900">
                                                 <Edit className="w-5 h-5" />
                                             </button>
-                                            <button className="text-red-600 hover:text-red-900">
+                                           
+                                            <button onClick={()=>deleteProductHandle(Cycle._id)} className="text-red-600 hover:text-red-900">
                                                 <Trash2 className="w-5 h-5" />
                                             </button>
                                         </div>

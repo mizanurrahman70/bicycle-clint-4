@@ -3,7 +3,7 @@ import { Bike, DollarSign, Package, ShoppingCart, Tag, Type } from 'lucide-react
 import { useCreateProductMutation } from '../../../../redux/features/products/productApi';
 import { z } from 'zod';
 import { ProductValidation } from './productValidation/ProductValidation';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 // Import Zod schema for validation
 
@@ -46,9 +46,7 @@ const AddProduct = () => {
       ProductValidation.parse(validatedFormData);  // Validate form data
       const response = await createProduct(validatedFormData).unwrap();
 
-      toast.success('Product added successfully!', {
-        position: 'top-right',
-      });
+       toast.success("Product deleted successfully",{position:'top-center'});
       
       // Reset form after success
       setFormData({
