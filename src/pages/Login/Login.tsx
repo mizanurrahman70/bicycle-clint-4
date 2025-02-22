@@ -5,6 +5,7 @@ import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { useAppDispatch } from "../../redux/hooks";
 import { setUser } from "../../redux/features/auth/authSlice";
 import { verifyToken } from "../../utils/verifyToken";
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
@@ -37,6 +38,7 @@ const Login = () => {
         user : user,
         token : res.data.token
        }));
+       toast.success("successfully Login",{position:'top-center'});
        navigate('/')
       };
 

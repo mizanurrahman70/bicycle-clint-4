@@ -8,7 +8,6 @@ import { useCurrentUser } from "../../../redux/features/auth/authSlice";
 const Dashboard = () => {
 
 const user = useSelector(useCurrentUser)
-console.log(user);
 const isAdmin =user?.role 
 
  return (
@@ -43,18 +42,6 @@ const isAdmin =user?.role
                 }
               >
                 My Profile
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/my_products"
-                className={({ isActive }) =>
-                  `flex items-center p-3 rounded-lg transition-colors ${
-                    isActive ? 'bg-[#1f855a] text-white' : 'hover:bg-[#1f855a]'
-                  }`
-                }
-              >
-                My Products
               </NavLink>
             </li>
           </>
