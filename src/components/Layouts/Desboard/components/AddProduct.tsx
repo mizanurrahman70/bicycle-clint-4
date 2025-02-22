@@ -82,7 +82,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="w-full h-screen mx-auto">
       <div className="bg-white shadow-xl rounded-lg overflow-hidden">
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
           <h2 className="text-2xl font-bold text-white flex items-center gap-2">

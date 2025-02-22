@@ -26,8 +26,8 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex-shrink-0 flex items-center">
               <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                className="h-13 w-auto"
+                src="https://i.ibb.co.com/twDRnyCF/download-3.png"
                 alt="Logo"
               />
               <span className="ml-2 text-xl font-bold text-gray-800">Bi Cycle</span>

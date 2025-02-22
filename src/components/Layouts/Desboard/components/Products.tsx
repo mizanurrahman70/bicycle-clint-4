@@ -103,83 +103,109 @@ const Products = () => {
 
                                 {editId === Cycle._id ? (
                                     <td colSpan={8} className="px-4 py-3">
-                                        {/* Modal for editing product */}
-                                        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
-                                            <div className="bg-white rounded-lg p-8 shadow-md w-96">
-                                                <h2 className="text-xl font-semibold mb-4">Edit Product</h2>
-                                                <div className="mb-4">
-                                                    <label className="block text-sm font-medium text-gray-700">Name</label>
-                                                    <input
-                                                        type="text"
-                                                        value={editData.name as string}
-                                                        onChange={(e) => handleInputChange("name", e.target.value)}
-                                                        className="border p-1 rounded w-full"
-                                                    />
-                                                </div>
-                                                <div className="mb-4">
-                                                    <label className="block text-sm font-medium text-gray-700">Brand</label>
-                                                    <input
-                                                        type="text"
-                                                        value={editData.brand as string}
-                                                        onChange={(e) => handleInputChange("brand", e.target.value)}
-                                                        className="border p-1 rounded w-full"
-                                                    />
-                                                </div>
-                                                <div className="mb-4">
-                                                    <label className="block text-sm font-medium text-gray-700">Type</label>
-                                                    <select
-                                                        value={editData.type as string}
-                                                        onChange={(e) => handleInputChange("type", e.target.value)}
-                                                        className="border p-1 rounded w-full"
-                                                    >
-                                                        <option value="Mountain">Mountain</option>
-                                                        <option value="Road">Road</option>
-                                                        <option value="Hybrid">Hybrid</option>
-                                                        <option value="BMX">BMX</option>
-                                                        <option value="Electric">Electric</option>
-                                                    </select>
-                                                </div>
-                                                <div className="mb-4">
-                                                    <label className="block text-sm font-medium text-gray-700">Price ($)</label>
-                                                    <input
-                                                        type="number"
-                                                        value={editData.price as number}
-                                                        onChange={(e) => handleInputChange("price", parseFloat(e.target.value))}
-                                                        className="border p-1 rounded w-full"
-                                                    />
-                                                </div>
-                                                <div className="mb-4">
-                                                    <label className="block text-sm font-medium text-gray-700">Quantity</label>
-                                                    <input
-                                                        type="number"
-                                                        value={editData.quantity as number}
-                                                        onChange={(e) => handleInputChange("quantity", parseInt(e.target.value))}
-                                                        className="border p-1 rounded w-full"
-                                                    />
-                                                </div>
-                                                <div className="mb-4">
-                                                    <label className="block text-sm font-medium text-gray-700">In Stock</label>
-                                                    <select
-                                                        value={editData.inStock ? "true" : "false"}
-                                                        onChange={(e) => handleInputChange("inStock", e.target.value === "true")}
-                                                        className="border p-1 rounded w-full"
-                                                    >
-                                                        <option value="true">Yes</option>
-                                                        <option value="false">No</option>
-                                                    </select>
-                                                </div>
-                                                <div className="flex justify-end gap-4">
-                                                    <button onClick={handleCancel} className="px-6 py-2 bg-gray-200 rounded-md text-gray-700">
-                                                        Cancel
-                                                    </button>
-                                                    <button onClick={handleSave} className="px-6 py-2 bg-blue-600 rounded-md text-white">
-                                                        <Save className="w-5 h-5 mr-2" />
-                                                        Save Changes
-                                                    </button>
-                                                </div>
-                                            </div>
+                                    {/* Modal for editing product */}
+                                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                                      <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
+                                        {/* Modal Header */}
+                                        <div className="p-6 border-b border-gray-200">
+                                          <h2 className="text-2xl font-semibold text-gray-800">Edit Product</h2>
                                         </div>
-                                    </td>
+                                  
+                                        {/* Modal Body */}
+                                        <div className="p-6 space-y-6">
+                                          {/* Name Field */}
+                                          <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                            <input
+                                              type="text"
+                                              value={editData.name as string}
+                                              onChange={(e) => handleInputChange("name", e.target.value)}
+                                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                            />
+                                          </div>
+                                  
+                                          {/* Brand Field */}
+                                          <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">Brand</label>
+                                            <input
+                                              type="text"
+                                              value={editData.brand as string}
+                                              onChange={(e) => handleInputChange("brand", e.target.value)}
+                                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                            />
+                                          </div>
+                                  
+                                          {/* Type Field */}
+                                          <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                                            <select
+                                              value={editData.type as string}
+                                              onChange={(e) => handleInputChange("type", e.target.value)}
+                                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                            >
+                                              <option value="Mountain">Mountain</option>
+                                              <option value="Road">Road</option>
+                                              <option value="Hybrid">Hybrid</option>
+                                              <option value="BMX">BMX</option>
+                                              <option value="Electric">Electric</option>
+                                            </select>
+                                          </div>
+                                  
+                                          {/* Price Field */}
+                                          <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">Price ($)</label>
+                                            <input
+                                              type="number"
+                                              value={editData.price as number}
+                                              onChange={(e) => handleInputChange("price", parseFloat(e.target.value))}
+                                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                            />
+                                          </div>
+                                  
+                                          {/* Quantity Field */}
+                                          <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                                            <input
+                                              type="number"
+                                              value={editData.quantity as number}
+                                              onChange={(e) => handleInputChange("quantity", parseInt(e.target.value))}
+                                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                            />
+                                          </div>
+                                  
+                                          {/* In Stock Field */}
+                                          <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">In Stock</label>
+                                            <select
+                                              value={editData.inStock ? "true" : "false"}
+                                              onChange={(e) => handleInputChange("inStock", e.target.value === "true")}
+                                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                            >
+                                              <option value="true">Yes</option>
+                                              <option value="false">No</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                  
+                                        {/* Modal Footer */}
+                                        <div className="p-6 border-t border-gray-200 flex justify-end gap-4">
+                                          <button
+                                            onClick={handleCancel}
+                                            className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                                          >
+                                            Cancel
+                                          </button>
+                                          <button
+                                            onClick={handleSave}
+                                            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+                                          >
+                                            <Save className="w-5 h-5 mr-2" />
+                                            Save Changes
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
                                 ) : (
                                     <>
                                         <td className="px-4 py-3 text-sm">{Cycle.name}</td>
