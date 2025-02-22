@@ -18,7 +18,7 @@ const Banner = () => {
             Discover Your Perfect Ride
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-8">
-            From mountain trails to city streets, find the bicycle that matches your adventure
+            From mountain trails to city streets, find the biCycle that matches your adventure
           </p>
           <div className="space-x-4">
             <button className="bg-white text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">

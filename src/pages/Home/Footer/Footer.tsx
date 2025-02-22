@@ -37,7 +37,7 @@ const Footer = () => {
             <li>123 Cycle Street</li>
             <li>Cycle City, CC 12345</li>
             <li>Phone: (555) 123-4567</li>
-            <li>Email: info@bicycles.com</li>
+            <li>Email: info@biCycles.com</li>
           </ul>
         </div>
         <div>

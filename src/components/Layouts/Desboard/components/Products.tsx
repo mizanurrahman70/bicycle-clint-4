@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { cycle, Edit, Trash2, Save, X } from 'lucide-react';
+import { Bike, Edit, Trash2, Save, X } from 'lucide-react';
 import { useGetAllProductsQuery } from '../../../../redux/features/products/productApi';
 
-interface Bicycle {
+interface BiCycle {
     id: string;
     name: string;
     brand: string;
@@ -17,14 +17,14 @@ const Products = () => {
     const { data: products, error, isLoading } = useGetAllProductsQuery();
     console.log(products);
     const [editId, setEditId] = useState<string | null>(null);
-    const [editData, setEditData] = useState<Partial<Bicycle>>({});
+    const [editData, setEditData] = useState<Partial<BiCycle>>({});
 
-    const handleEditClick = (bicycle: Bicycle) => {
-        setEditId(bicycle.id);
-        setEditData({ ...bicycle });
+    const handleEditClick = (biCycle: BiCycle) => {
+        setEditId(biCycle.id);
+        setEditData({ ...biCycle });
     };
 
-    const handleInputChange = (field: keyof Bicycle, value: string | number | boolean) => {
+    const handleInputChange = (field: keyof BiCycle, value: string | number | boolean) => {
         setEditData((prev) => ({ ...prev, [field]: value }));
     };
 
@@ -47,7 +47,7 @@ const Products = () => {
     return (
         <div className="max-w-7xl mx-auto px-4 py-8">
             <h1 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
-                <cycle className="w-6 h-6" />
+                <Bike className="w-6 h-6" />
                 Manage Products
             </h1>
 
@@ -67,11 +67,11 @@ const Products = () => {
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                        {products?.data.map((cycle,index) => (
-                            <tr key={cycle.id} className="hover:bg-gray-50 transition-colors">
+                        {products?.data.map((Cycle,index) => (
+                            <tr key={Cycle.id} className="hover:bg-gray-50 transition-colors">
                                 <td className="px-4 py-3 text-sm text-gray-900">{index +1}</td>
 
-                                {editId === cycle.id ? (
+                                {editId === Cycle.id ? (
                                     <>
                                         <td className="px-4 py-3">
                                             <input type="text" value={editData.name as string} onChange={(e) => handleInputChange("name", e.target.value)}
@@ -109,17 +109,17 @@ const Products = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <td className="px-4 py-3 text-sm">{cycle.name}</td>
-                                        <td className="px-4 py-3 text-sm">{cycle.brand}</td>
-                                        <td className="px-4 py-3 text-sm">{cycle.type}</td>
-                                        <td className="px-4 py-3 text-sm">${cycle.price.toFixed(2)}</td>
-                                        <td className="px-4 py-3 text-sm">{cycle.quantity}</td>
-                                        <td className="px-4 py-3 text-sm">{cycle.inStock ? "✔️ Yes" : "❌ No"}</td>
+                                        <td className="px-4 py-3 text-sm">{Cycle.name}</td>
+                                        <td className="px-4 py-3 text-sm">{Cycle.brand}</td>
+                                        <td className="px-4 py-3 text-sm">{Cycle.type}</td>
+                                        <td className="px-4 py-3 text-sm">${Cycle.price.toFixed(2)}</td>
+                                        <td className="px-4 py-3 text-sm">{Cycle.quantity}</td>
+                                        <td className="px-4 py-3 text-sm">{Cycle.inStock ? "✔️ Yes" : "❌ No"}</td>
                                     </>
                                 )}
 
                                 <td className="px-4 py-3 text-right">
-                                    {editId === cycle.id ? (
+                                    {editId === Cycle.id ? (
                                         <div className="flex gap-2">
                                             <button onClick={handleSave} className="text-green-600 hover:text-green-900">
                                                 <Save className="w-5 h-5" />
@@ -130,7 +130,7 @@ const Products = () => {
                                         </div>
                                     ) : (
                                         <div className="flex gap-2">
-                                            <button onClick={() => handleEditClick(cycle)} className="text-blue-600 hover:text-blue-900">
+                                            <button onClick={() => handleEditClick(Cycle)} className="text-blue-600 hover:text-blue-900">
                                                 <Edit className="w-5 h-5" />
                                             </button>
                                             <button className="text-red-600 hover:text-red-900">

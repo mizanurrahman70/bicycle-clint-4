@@ -1,9 +1,9 @@
 import React from 'react';
-import { Cycle, Users, Trophy, Wrench, Truck, HeartHandshake } from 'lucide-react';
+import { Bike, Users, Trophy, Wrench, Truck, HeartHandshake } from 'lucide-react';
 
 const stats = [
   {
-    icon: <Cycle size={24} />,
+    icon: <Bike size={24} />,
     value: "10,000+",
     label: "Cycles Sold"
   },
@@ -21,7 +21,7 @@ const stats = [
 
 const features = [
   {
-    icon: <Cycle className="text-indigo-600" size={24} />,
+    icon: <Bike className="text-indigo-600" size={24} />,
     title: "Premium Selection",
     description: "Curated collection of top-quality Cycles from renowned brands worldwide"
   },
@@ -128,7 +128,7 @@ const About = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
+            {[ 
               {
                 name: "Sarah Johnson",
                 role: "CEO & Founder",
