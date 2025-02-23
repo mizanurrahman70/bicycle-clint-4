@@ -13,6 +13,8 @@ import MyProducts from "../components/Layouts/Desboard/components/MyProducts";
 import ManageOrders from "../components/Layouts/Desboard/components/ManageOrders";
 import ManageUsers from "../components/Layouts/Desboard/components/ManageUsers";
 import Products from "../components/Layouts/Desboard/components/Products";
+import Checkout from "../pages/ChackOut/Checkout";
+import VerifyOrder from "../pages/verifayOder/VerifyOrder";
 
 
 
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
             {
                 path: '/products/:id',
                 element: <ProductDetails />
+            },
+            {
+                path : '/checkout/:id',
+                element: <Checkout/>
+            },
+            {
+                path : 'order/verify',
+                element: <VerifyOrder/>
             }
         ]
     },

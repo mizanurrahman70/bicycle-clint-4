@@ -8,7 +8,7 @@ const ordersApi = baseApi.injectEndpoints({
        
         createOrder: builder.mutation({
             query: (orderData) => ({
-                url: "/orders",
+                url: "/create-order",
                 method: "POST",
                 body: orderData,
             }),
@@ -26,10 +26,24 @@ const ordersApi = baseApi.injectEndpoints({
                 method: "DELETE",
             }),
         }),
+        verifyOrder: builder.query({
+            query: (order_id) => ({
+              url: "/order/verify",
+              params: { order_id },
+              method: "GET",
+            }),
+          }),
+        getTotalRevenue: builder.query({
+            query: () => "/orders/revenue",
+        }),
     }),
 });
 
 export const {
+    useCreateOrderMutation,
+    useVerifyOrderQuery,
+    useGetTotalRevenueQuery,
+    useGetAllOrderQuery,
    
 } = ordersApi;
 export default ordersApi;
