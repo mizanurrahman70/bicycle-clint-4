@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Review } from '../types/review';
+import { Review } from './type/reviews';
 import ReviewCard from './ReviewCard';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -11,7 +11,6 @@ interface ReviewMarqueeProps {
 
 const ReviewMarquee: React.FC<ReviewMarqueeProps> = ({ 
   reviews, 
-  speed = 30,
   autoScroll = true
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -43,8 +42,7 @@ const ReviewMarquee: React.FC<ReviewMarqueeProps> = ({
     const scroll = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       if (!container) return;
-      
-      const elapsed = timestamp - startTime;
+
       container.scrollLeft += 0.5; // Smooth scroll speed
       
       // Reset scroll position when reaching the end to create infinite effect
