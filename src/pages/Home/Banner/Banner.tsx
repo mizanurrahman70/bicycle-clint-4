@@ -1,52 +1,92 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel'
+import React from 'react';
+import { ArrowRight, ShoppingCart, Award, Truck } from 'lucide-react';
 
-const Banner = () => {
-    return (
-        <Carousel className=" h-[800px]">
-                <div className="relative">
-                <img 
-                    src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Bike Shop"
-                    className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-opacity-50">
-                    <h2 className="text-white text-3xl font-bold"> Discover Your Perfect Ride</h2>
-                </div>
-            </div>
-               
-            <div className="relative h-[800px] overflow-hidden">
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=3540&auto=format&fit=crop')",
-        }}
-      >
-        <div className="absolute inset-0  bg-opacity-50"></div>
+interface BannerProps {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  onCtaClick?: () => void;
+}
+
+const Banner: React.FC<BannerProps> = ({
+  title = "Ride Into Adventure",
+  subtitle = "Premium bicycles for every journey, crafted with precision and passion",
+  ctaText = "Shop Collection",
+  onCtaClick = () => {},
+}) => {
+  return (
+    <div className="relative overflow-hidden bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white">
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <pattern id="grid-pattern" width="8" height="8" patternUnits="userSpaceOnUse">
+            <path d="M 8 0 L 0 0 0 8" fill="none" stroke="currentColor" strokeWidth="0.5" />
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+        </svg>
       </div>
-      
-      <div className="relative h-full flex items-center justify-center px-4">
-        <div className="text-center max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            Discover Your Perfect Ride
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8">
-            From mountain trails to city streets, find the biCycle that matches your adventure
-          </p>
-          <div className="space-x-4">
-            <button className="bg-white text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
-              Shop Now
+
+      {/* Decorative Circles */}
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500 rounded-full opacity-20" />
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-indigo-500 rounded-full opacity-20" />
+
+      <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
+        <div className="flex flex-col md:flex-row items-center">
+          {/* Text Content */}
+          <div className="md:w-1/2 mb-10 md:mb-0 md:pr-8">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+              {title}
+            </h1>
+            <p className="text-lg md:text-xl text-blue-100 mb-8 max-w-lg">{subtitle}</p>
+
+            {/* Features */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              {[{ Icon: Award, text: "Premium Quality" }, { Icon: Truck, text: "Free Shipping" }].map(({ Icon, text }, index) => (
+                <div key={index} className="flex items-center">
+                  <div className="bg-blue-700 bg-opacity-40 p-2 rounded-full mr-3">
+                    <Icon className="w-5 h-5 text-blue-200" />
+                  </div>
+                  <span className="text-sm md:text-base">{text}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <button
+              onClick={onCtaClick}
+              className="group flex items-center bg-white text-blue-900 px-6 py-3 rounded-full font-medium shadow-lg hover:bg-blue-50 transition-all duration-300"
+            >
+              <ShoppingCart className="w-5 h-5 mr-2" />
+              {ctaText}
+              <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
             </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition duration-300">
-              Learn More
-            </button>
+          </div>
+
+          {/* Image Section */}
+          <div className="md:w-1/2 relative">
+            <div className="relative z-10 rounded-lg overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+              <img
+                src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                alt="Premium bicycle"
+                className="w-full h-auto"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-blue-900 to-transparent p-4">
+                <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2 inline-block">
+                  <span className="text-white font-bold">New Collection 2025</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Price Tag */}
+            <div className="absolute -top-4 -right-4 bg-yellow-500 text-blue-900 rounded-full w-20 h-20 flex flex-col items-center justify-center transform rotate-12 shadow-lg z-20">
+              <span className="text-xs font-bold">FROM</span>
+              <span className="text-xl font-bold">$899</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-            </Carousel>
-    );
+  );
 };
 
 export default Banner;
