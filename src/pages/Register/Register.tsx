@@ -16,7 +16,7 @@ const Register = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      const res = await registerUser(data).unwrap();
+      await registerUser(data).unwrap();
       navigate('/login')
       toast('🦄 Register successful!', {
         position: "top-center",
