@@ -63,43 +63,7 @@ The Bicycle Store is a user-friendly, responsive e-commerce platform designed to
 - **Loading States:** Displays loaders or spinners during API calls like login or data fetching.
 - **Toasts:** Notify users of actions such as "Login successful" or "Order placed."
 
-## Optional Recommendation Functionalities
 
-**User Side:**
-- **Bicycle Comparison Tool:** Allows users to compare up to three bicycles side by side, showing specifications, pricing, and features.
-
-**Admin Side:**
-- **Sales Dashboard:** A visual summary of sales data using charts (bar, line, pie).
-- **Total Sales Revenue:** Shows total revenue for a selected period.
-- **Units Sold:** Displays the number of bicycles sold.
-- **Top-Selling Bicycles:** Highlights the most popular models.
-
-## Backend Requirements
-
-**Database (MongoDB):**
-- **Users:** Includes roles such as "customer" and "admin."
-- **Bicycles:** Contains attributes like name, brand, price, model, and stock.
-- **Orders:** Links users to products, tracks total price, and status.
-
-**Authentication:**
-- Implements user registration, login, JWT token management, and logout.
-- Passwords are securely hashed, and sessions are handled using JWT.
-
-**Product Management:**
-- Implements CRUD operations for bicycles (create, read, update, delete).
-
-**Order Management:**
-- Executes CRUD operations for orders while ensuring stock levels before placing an order.
-
-**Payment Integration:**
-- Supports SurjoPay, AmaarPay, SSLCommerz, or Stripe for payment processing.
-
-**Error Handling:**
-- Consistent and user-friendly error messaging for login attempts, out-of-stock bicycles, and more.
-
-**Additional Changes:**
-- Backend APIs support pagination for bicycle listings and order retrieval.
-- Authentication middleware protects private routes like checkout and the dashboard.
 
 ## Installation and Setup
 
