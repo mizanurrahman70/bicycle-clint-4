@@ -13,9 +13,9 @@ const About = () => {
           <div className="absolute inset-0 bg-indigo-800 mix-blend-multiply" aria-hidden="true"></div>
         </div>
         <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">About BikeShop</h1>
+          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">About bi-cyclehop</h1>
           <p className="mt-6 text-xl text-indigo-100 max-w-3xl">
-            Your trusted partner in cycling adventures since 2010. We're passionate about bikes and committed to providing the best cycling experience for our customers.
+            Your trusted partner in cycling adventures since 2010. We're passionate about bi-cycle and committed to providing the best cycling experience for our customers.
           </p>
         </div>
       </div>
@@ -26,7 +26,7 @@ const About = () => {
           <div className="text-center">
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">Our Mission</h2>
             <p className="mt-4 text-lg text-gray-500">
-              To inspire and enable cycling adventures by providing exceptional bikes, expert guidance, and outstanding service to our community.
+              To inspire and enable cycling adventures by providing exceptional bi-cycle, expert guidance, and outstanding service to our community.
             </p>
           </div>
         </div>
@@ -50,7 +50,7 @@ const About = () => {
                 <div className="ml-16">
                   <h3 className="text-lg font-medium text-gray-900">Quality First</h3>
                   <p className="mt-2 text-base text-gray-500">
-                    We carefully select and stock only the highest quality bikes and accessories from trusted manufacturers.
+                    We carefully select and stock only the highest quality bi-cycle and accessories from trusted manufacturers.
                   </p>
                 </div>
               </div>
@@ -160,7 +160,7 @@ const About = () => {
                   <p className="text-indigo-600">Service Manager</p>
                 </div>
                 <div className="text-base text-gray-500">
-                  <p>Certified bike mechanic with expertise in high-end road and mountain bikes.</p>
+                  <p>Certified bike mechanic with expertise in high-end road and mountain bi-cycle.</p>
                 </div>
               </div>
             </div>
@@ -196,7 +196,7 @@ const About = () => {
                       <p>123 Bike Street</p>
                       <p>Cycle City, CC 12345</p>
                       <p>Phone: (555) 123-4567</p>
-                      <p>Email: info@bikeshop.com</p>
+                      <p>Email: info@bi-cyclehop.com</p>
                     </div>
                   </div>
                 </div>

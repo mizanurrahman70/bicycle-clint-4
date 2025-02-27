@@ -30,7 +30,7 @@ const Navbar = () => {
                 src="https://i.ibb.co.com/DfKgNLx6/bikelogo.png"
                 alt="Logo"
               />
-              <span className="ml-2 text-xl font-bold text-gray-800">Bike Nest</span>
+              <span className="ml-2 text-xl font-bold text-gray-800">Bi-Cycle</span>
             </Link>
 
             {/* Desktop Navigation */}

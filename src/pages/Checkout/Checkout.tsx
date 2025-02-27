@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import {  useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -5,10 +6,11 @@ import { useGetProductByIdQuery } from '../../redux/features/products/productApi
 import { useCurrentUser } from '../../redux/features/auth/authSlice';
 import { useAppSelector } from '../../redux/hooks';
 import { useCreateOrderMutation } from '../../redux/features/orders/orderApi';
+import { useGetAllUserQuery } from '../../redux/features/user/userApi';
 
 
 export type IUser = {
-  id?: string;
+  _id?: string;
   name: string;
   email: string;
   password: string;
@@ -29,6 +31,10 @@ const Checkout = () => {
 
   // const user = useAppSelector(useCurrentUser);
   const user: IUser | null = useAppSelector(useCurrentUser) as IUser | null;
+  const { data: users = []} = useGetAllUserQuery();
+  // @ts-ignore
+  const matchedUser = users?.data?.find((u: IUser) => u.email === user?.email);
+  console.log(matchedUser);
   const [createOrder, {data: order, isSuccess, isLoading}] = useCreateOrderMutation();
   console.log({order});
 
@@ -57,7 +63,7 @@ const Checkout = () => {
 
     const payload = {
       data: {
-        user: user?.id ?? "",
+        user: matchedUser?._id ?? "",
         products: [
           {
             product: product?._id,
