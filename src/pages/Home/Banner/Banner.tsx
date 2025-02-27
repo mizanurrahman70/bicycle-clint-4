@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, ShoppingCart, Award, Truck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface BannerProps {
   title?: string;
@@ -12,7 +13,7 @@ const Banner: React.FC<BannerProps> = ({
   title = "Ride Into Adventure",
   subtitle = "Premium bicycles for every journey, crafted with precision and passion",
   ctaText = "Shop Collection",
-  onCtaClick = () => {},
+  onCtaClick = () => { },
 }) => {
   return (
     <div className="relative overflow-hidden bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white">
@@ -52,14 +53,17 @@ const Banner: React.FC<BannerProps> = ({
             </div>
 
             {/* CTA Button */}
-            <button
-              onClick={onCtaClick}
-              className="group flex items-center bg-white text-blue-900 px-6 py-3 rounded-full font-medium shadow-lg hover:bg-blue-50 transition-all duration-300"
-            >
-              <ShoppingCart className="w-5 h-5 mr-2" />
-              {ctaText}
-              <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
+            <Link to="/products">
+              <button
+                className="group flex items-center bg-white text-blue-900 px-6 py-3 rounded-full font-medium shadow-lg hover:bg-blue-50 transition-all duration-300"
+              >
+                <ShoppingCart className="w-5 h-5 mr-2" />
+                {ctaText}
+                <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
+            </Link>
+
+
           </div>
 
           {/* Image Section */}
@@ -72,7 +76,7 @@ const Banner: React.FC<BannerProps> = ({
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-blue-900 to-transparent p-4">
                 <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2 inline-block">
-                  <span className="text-white font-bold">New Collection 2025</span>
+                  <span className="text-black font-bold">New Collection 2025</span>
                 </div>
               </div>
             </div>
