@@ -13,7 +13,6 @@ const Banner: React.FC<BannerProps> = ({
   title = "Ride Into Adventure",
   subtitle = "Premium bicycles for every journey, crafted with precision and passion",
   ctaText = "Shop Collection",
-  onCtaClick = () => { },
 }) => {
   return (
     <div className="relative overflow-hidden bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white">
