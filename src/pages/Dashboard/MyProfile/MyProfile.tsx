@@ -31,7 +31,6 @@ const MyProfile = () => {
     useEffect(() => {
         // @ts-ignore
             const matchedUser = users?.data?.find(u => u?.email === user?.email);
-            console.log(matchedUser);
             if (matchedUser) {
                 setUserId(matchedUser._id);
             }

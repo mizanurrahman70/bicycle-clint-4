@@ -39,6 +39,17 @@ const DashboardLayout = () => {
                                     My Profile
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/manage_orders"
+                                    className={({ isActive }) =>
+                                        `flex items-center p-3 rounded-lg transition-colors ${isActive ? 'bg-[#1f855a] text-white' : 'hover:bg-[#1f855a]'
+                                        }`
+                                    }
+                                >
+                                    Manage Orders
+                                </NavLink>
+                            </li>
                         </>
                     )}
                     {isAdmin === 'admin' && (
@@ -63,17 +74,6 @@ const DashboardLayout = () => {
                                     }
                                 >
                                     Manage Users
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                    to="/dashboard/manage_orders"
-                                    className={({ isActive }) =>
-                                        `flex items-center p-3 rounded-lg transition-colors ${isActive ? 'bg-[#1f855a] text-white' : 'hover:bg-[#1f855a]'
-                                        }`
-                                    }
-                                >
-                                    Manage Orders
                                 </NavLink>
                             </li>
                             <li>
