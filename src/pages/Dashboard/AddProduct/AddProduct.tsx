@@ -26,8 +26,6 @@ const AddProduct = () => {
   const onSubmit = async (data: ProductForm) => {
     try {
       const response = await createProduct({data}).unwrap();
-      console.log({response});
-     
       if(response.success) {
         toast.success("Product added successfully", { position: "top-center" });
       }

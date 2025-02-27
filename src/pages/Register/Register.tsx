@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRegisterMutation } from '../../redux/features/auth/authApi';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   // const dispatch = useAppDispatch();
@@ -11,11 +12,16 @@ const Register = () => {
   } = useForm();
 
   const [registerUser, { isLoading }] = useRegisterMutation();
+  const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {
     try {
       const res = await registerUser(data).unwrap();
-      console.log(res);
+      navigate('/login')
+      toast('🦄 Register successful!', {
+        position: "top-center",
+        
+        });
       // dispatch(setUser({ user: res.user, token: res.token }));
     } catch (error) {
       console.error('Registration failed:', error);
