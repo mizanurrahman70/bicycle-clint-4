@@ -1,3 +1,4 @@
+import ChoseUs from "../../components/choose/ChoseUs";
 import ReviewMarquee from "../revews/ReviewMarquee";
 import { reviews } from "../revews/reviews";
 import Banner from "./Banner/Banner";
@@ -13,17 +14,20 @@ const Home = () => {
         subtitle="Discover our premium collection of bicycles designed for every terrain and lifestyle"
         ctaText="Explore Collection"
       />
+      
       <FeaturedProducts />
       <section className="mb-12 mx-auto container">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-800">What Our Customers Say</h2>
           <span className="text-blue-600 font-medium">All Reviews</span>
         </div>
-
+  
         <div className="container mx-auto rounded-lg overflow-hidden shadow-md">
           <ReviewMarquee reviews={reviews} autoScroll={true} />
         </div>
       </section>
+      <ChoseUs></ChoseUs>
+     
       <Footer />
     </div>
   );
