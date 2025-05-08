@@ -4,7 +4,7 @@
 
 **Live URL:** [Bicycle Store](https://bi-cycle-client-six.vercel.app/)
 
-**Live URL:** [Back end Repo](https://github.com/mizanurrahman70/bicycle-server-4)
+**Backend Repo:** [Server Link](https://github.com/mizanurrahman70/bicycle-server-4)
 
 ## Overview
 
