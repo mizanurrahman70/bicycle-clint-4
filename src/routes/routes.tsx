@@ -14,6 +14,7 @@ import Products from "../pages/Dashboard/Products/Products";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import ManageOrders from "../pages/Dashboard/ManageOrders/ManageOrders";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
+import DashboardWelcome from "../pages/Dashboard/wellcomePage/DashboardWelcome";
 
 
 const router = createBrowserRouter([
@@ -59,31 +60,36 @@ const router = createBrowserRouter([
     },
     // Dashboard route
     {
-        path: '/dashboard',
-        element: <DashboardLayout />,
-        children: [
-            {
-                path: '/dashboard/add_product',
-                element: <AddProduct />
-            },
-            {
-                path: '/dashboard/my_profile',
-                element: <MyProfile />
-            },
-            {
-                path: '/dashboard/manage_orders',
-                element: <ManageOrders />
-            },
-            {
-                path: '/dashboard/manage_users',
-                element: <ManageUsers />
-            },
-            {
-                path: '/dashboard/manage_product',
-                element: <Products />
-            },
-        ] // Keep this if you plan to add nested routes inside Dashboard
-    }
+    path: '/dashboard',
+    element: <DashboardLayout />,
+    children: [
+        {
+            index: true, 
+            element: <DashboardWelcome /> 
+        },
+        {
+            path: '/dashboard/add_product',
+            element: <AddProduct />
+        },
+        {
+            path: '/dashboard/my_profile',
+            element: <MyProfile />
+        },
+        {
+            path: '/dashboard/manage_orders',
+            element: <ManageOrders />
+        },
+        {
+            path: '/dashboard/manage_users',
+            element: <ManageUsers />
+        },
+        {
+            path: '/dashboard/manage_product',
+            element: <Products />
+        },
+    ]
+}
+
 ]);
 
 export default router;
