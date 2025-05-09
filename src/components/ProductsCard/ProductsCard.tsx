@@ -18,6 +18,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  console.log(product,'p');
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       <div className="aspect-w-3 aspect-h-2">

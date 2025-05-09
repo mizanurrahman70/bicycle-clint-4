@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 
@@ -12,7 +12,7 @@ const DashboardLayout = () => {
             {/* Sidebar */}
             <div className="md:w-64 bg-[#27a072] text-white shadow-lg">
                 <div className="p-6 border-b border-[#1f855a]">
-                    <h1 className="text-2xl font-bold text-center">Bike Dashboard</h1>
+                    <Link to='/dashboard'><h1 className="text-2xl font-bold text-center">Bike Dashboard</h1></Link>
                 </div>
                 <ul className="menu p-4 space-y-3">
                     {(isAdmin === 'admin' || isAdmin === 'customer') && (

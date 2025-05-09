@@ -65,11 +65,11 @@ const ChoseUs = () => {
             </div>
           </div>
           
-          <div className="text-center mt-10">
+          {/* <div className="text-center mt-10">
             <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-full shadow-md transition-colors duration-300">
               Learn More About Our Services
             </button>
-          </div>
+          </div> */}
         </div>
       </section>
     );
