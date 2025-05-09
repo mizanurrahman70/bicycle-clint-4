@@ -105,10 +105,10 @@ const UpcomingProduct = () => {
                   <span className="text-2xl font-bold text-gray-900">
                     ${product.price.toLocaleString()}
                   </span>
-                  {/* <button className="flex items-center bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200">
-                    <ShoppingCart size={20} className="mr-2" />
-                    Add to Cart
-                  </button> */}
+                  <button className="flex items-center bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200">
+                    Coming Soon
+                    
+                  </button>
                 </div>
               </div>
             </div>
