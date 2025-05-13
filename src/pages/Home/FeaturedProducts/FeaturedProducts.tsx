@@ -7,7 +7,6 @@ import { useGetAllProductsQuery } from '../../../redux/features/products/product
 const FeaturedProducts = () => {
   const { data, error, isLoading } = useGetAllProductsQuery();
   const products = data?.data;
-  console.log(products, 'products');
 
   return (
     <div className="bg-white py-16 px-4">

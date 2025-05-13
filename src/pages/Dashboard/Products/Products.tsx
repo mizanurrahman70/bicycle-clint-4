@@ -17,7 +17,6 @@ interface Bike {
 
 const Products = () => {
     const { data: products, error, isLoading,refetch } = useGetAllProductsQuery();
-    console.log(products);
     const [updateProduct] = useUpdateProductMutation();
     const [editId, setEditId] = useState<string | null>(null);
     const [editData, setEditData] = useState<Partial<Bike>>({});

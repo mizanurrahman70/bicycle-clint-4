@@ -69,7 +69,6 @@ const MyProfile = () => {
                 UserId: userId,
                 updatedUser: confirmPassword,
             });
-            console.log(response);
             // Handle success response
             if (response?.data) {
                 setSuccess('Password updated successfully');

@@ -44,7 +44,7 @@ const VerifyOrder = () => {
   {
     refetchOnMountOrArgChange: true,
   });
-  console.log({data});
+
   const orderData: OrderData = data?.data?.[0];
   
   return (

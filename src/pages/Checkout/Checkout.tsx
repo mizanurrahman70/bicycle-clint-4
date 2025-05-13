@@ -34,10 +34,7 @@ const Checkout = () => {
   const { data: users = []} = useGetAllUserQuery();
   // @ts-ignore
   const matchedUser = users?.data?.find((u: IUser) => u.email === user?.email);
-  console.log(matchedUser);
   const [createOrder, {data: order, isSuccess, isLoading}] = useCreateOrderMutation();
-  console.log({order});
-
   useEffect(() => {
     if(isSuccess) {
       if(order?.data) {
@@ -80,8 +77,6 @@ const Checkout = () => {
     } finally {
       setIsProcessing(false);
     }
-
-    console.log(payload);
   };
 
   return (
